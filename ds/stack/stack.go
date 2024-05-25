@@ -28,7 +28,7 @@ func (s *Stack) Pop() (int, error) {
 
 func (s *Stack) Peek() (int, error) {
 	if len(*s) == 0 {
-		return -1, errors.New("Stack is empty")
+		return 0, errors.New("Stack is empty")
 	}
 	return (*s)[len(*s)-1], nil
 }
