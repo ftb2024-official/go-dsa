@@ -41,7 +41,7 @@ func TestPop(t *testing.T) {
 		t.Errorf("expected length 1, got %v", len(s))
 	}
 
-	val, err = s.Pop()
+	val, _ = s.Pop()
 	if val != 10 {
 		t.Errorf("expected 10, got %v", val)
 	}
@@ -87,7 +87,7 @@ func TestIsEmpty(t *testing.T) {
 		t.Errorf("expected false, got true")
 	}
 
-	s.Pop()
+	_, _ = s.Pop()
 	if !s.IsEmpty() {
 		t.Errorf("expected true, got false")
 	}
