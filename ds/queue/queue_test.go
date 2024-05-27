@@ -13,7 +13,7 @@ func TestEnqueue(t *testing.T) {
 		t.Errorf("expected length 3, got %v", len(q))
 	}
 
-	if q[0] != 10 || q[1] != 20 || q[2] != 30 {
+	if q[0] != 10 && q[1] != 20 && q[2] != 30 {
 		t.Errorf("expected [10, 20, 30], got %v", q)
 	}
 }

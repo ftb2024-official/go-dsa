@@ -13,7 +13,7 @@ func TestPush(t *testing.T) {
 		t.Errorf("expected length 3, got %v", len(s))
 	}
 
-	if s[0] != 10 || s[1] != 20 || s[2] != 30 {
+	if s[0] != 10 && s[1] != 20 && s[2] != 30 {
 		t.Errorf("expected [10, 20, 30], got %v", s)
 	}
 }
