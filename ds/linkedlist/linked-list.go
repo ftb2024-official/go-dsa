@@ -5,7 +5,10 @@ the sequence. This design enables efficient insertion or removal of elements fro
 
 package linkedlist
 
-import "fmt"
+import (
+	"errors"
+	"fmt"
+)
 
 type Node struct {
 	data int
@@ -30,14 +33,14 @@ func (ll *LinkedList) Append(v int) {
 	current.next = newNode
 }
 
-func (ll *LinkedList) DeleteWithValue(v int) {
-	if ll.head == nil {
-		return
+func (ll *LinkedList) DeleteWithValue(v int) error {
+	if ll.IsEmpty() {
+		return errors.New("LinkedList is empty")
 	}
 
 	if ll.head.data == v {
 		ll.head = ll.head.next
-		return
+		return nil
 	}
 
 	current := ll.head
@@ -45,16 +48,29 @@ func (ll *LinkedList) DeleteWithValue(v int) {
 		current = current.next
 	}
 
-	if current.next != nil {
-		current.next = current.next.next
+	if current.next == nil {
+		return errors.New("No such value in LinkedList")
 	}
+
+	current.next = current.next.next
+	return nil
 }
 
-func (ll *LinkedList) Display() {
+func (ll *LinkedList) Display() error {
+	if ll.IsEmpty() {
+		return errors.New("LinkedList is empty")
+	}
+
 	current := ll.head
 	for current != nil {
 		fmt.Print(current.data, " -> ")
 		current = current.next
 	}
 	fmt.Println("nil")
+
+	return nil
+}
+
+func (ll *LinkedList) IsEmpty() bool {
+	return ll.head == nil
 }
